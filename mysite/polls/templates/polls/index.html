@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+</head>
+<body>
+    <h1>Guten Tag, Welt!  Sie sind bei der Homepage des polls.<h1>
+        <h2>Hier sind die fünf neusten Fragen:</h2>
+            {% if latest_question_list %}
+                <ul>
+                {% for q in latest_question_list %}
+                    <li><a href="{% url 'polls:detail' q.id %}" > {{ q.question_text }}</a>
+                     -- published {{ q.pub_date }}</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>Keine Polls zum wählen.</p>
+            {% endif %}
+</body>
+</html>

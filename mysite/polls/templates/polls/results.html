@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question Results</title>
+</head>
+<body>
+<h1> The results for Question {{ question.id }} will eventually be displayed here: </h1>
+
+<h2>{{ question.question_text }}</h2>
+    <ul>
+        {% for choice in question.choice_set.all %}
+            <li> {{ choice.choice_text }} : {{ choice.votes}} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+    </ul>
+
+<a href="{% url 'polls:detail' question.id %}">Vote again?</a><br />
+<a href="{% url 'polls:index' %}">Or pick another survey!</a>
+</body>
+</html>
